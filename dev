@@ -1,0 +1,30 @@
+#!/bin/bash
+
+BASEDIR=$(dirname $0)
+current_section=""
+
+while read line; do
+    # read the current section
+    if [ "$line" = "env:" ]; then
+        current_section="env"
+    elif [ "$line" = "apps:" ]; then
+        current_section="apps"
+    elif [ "$line" = "run:" ]; then
+        current_section="run"
+    else
+        # processing commands
+        if [ "$current_section" != "run" ]; then
+            file_name=(${line})
+            source ${BASEDIR}/${current_section}/${file_name[0]}.sh
+            check
+            IS_AVAILABLE=$?
+            if [ $IS_AVAILABLE == 0 ]; then
+                install
+            fi
+            active
+        else
+            $line
+        fi
+    fi
+
+done < ${PWD}/dev.env
