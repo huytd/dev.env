@@ -1,6 +1,6 @@
 check() {
     echo "Checking redis..."
-    MONGO_PATH=`which redis-server`
+    MONGO_PATH=$(which redis-server)
     if [ "$MONGO_PATH" == "redis-server not found" ]; then
         return 0
     else
@@ -15,7 +15,7 @@ install() {
 
 active() {
     redis_app=(${line})
-    REDIS_CHECK=`lsof -i | grep redis`
+    REDIS_CHECK=$(lsof -i | grep redis)
     REDIS_PORT=${redis_app[1]}
     if [ "$REDIS_PORT" == "" ]; then
         REDIS_PORT="6379"
