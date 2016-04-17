@@ -1,6 +1,6 @@
 check() {
     echo "Checking postgres..."
-    POSTGRES_PATH=`which postgres`
+    POSTGRES_PATH=$(which postgres)
     if [ "$POSTGRES_PATH" == "mongod not found" ]; then
         return 0
     else
@@ -15,7 +15,7 @@ install() {
 
 active() {
     postgres_app=(${line})
-    POSTGRES_CHECK=`lsof -i | grep postgres`
+    POSTGRES_CHECK=$(lsof -i | grep postgres)
     POSTGRES_PORT=${postgres_app[1]}
     if [ "$POSTGRES_PORT" == "" ]; then
         POSTGRES_PORT="27017"

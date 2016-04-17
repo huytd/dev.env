@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # checking Homebrew
-BREW_DIR=`which brew`
+BREW_DIR=$(which brew)
 if [ "$BREW_DIR" == "" ]; then
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi

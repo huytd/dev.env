@@ -1,6 +1,6 @@
 check() {
     echo "Checking mongo..."
-    MONGO_PATH=`which mongod`
+    MONGO_PATH=$(which mongod)
     if [ "$MONGO_PATH" == "mongod not found" ]; then
         return 0
     else
@@ -15,7 +15,7 @@ install() {
 
 active() {
     mongo_app=(${line})
-    MONGO_CHECK=`lsof -i | grep mongo`
+    MONGO_CHECK=$(lsof -i | grep mongo)
     MONGO_PORT=${mongo_app[1]}
     if [ "$MONGO_PORT" == "" ]; then
         MONGO_PORT="27017"
